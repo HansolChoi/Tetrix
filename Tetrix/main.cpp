@@ -7,8 +7,8 @@
 
 using namespace std;
 
-void MyPlayer(Player *my);
-void OtherPlayer(Player *my);
+void MyPlayer(Player *pMy);
+void OtherPlayer(Player *pMy);
 
 int main()
 {
@@ -27,11 +27,11 @@ int main()
 	return 0;
 }
 
-void MyPlayer(Player *my)
+void MyPlayer(Player *pMy)
 {
-	Board &board = my->board;
-	Block &CurBlock = my->block;
-	Info &info = my->info;
+	Board &board = pMy->board;
+	Block &CurBlock = pMy->block;
+	Info &info = pMy->info;
 
 	while (board.live)
 	{
@@ -39,12 +39,11 @@ void MyPlayer(Player *my)
 		info.renewBlock(&board.qBlock);
 		board.chkLive(CurBlock);
 		Block AutoPreBlock = CurBlock;
-		Block Predict = CurBlock, PrePredic;
+		Block Predict = CurBlock;
 
 		do {
-			PrePredic = Predict;
+			IO::print(Predict, IO::ERASE);
 			Predict = board.predictBlock(CurBlock);
-			IO::print(PrePredic, IO::ERASE);
 			IO::print(Predict, IO::PREDICT);
 
 			IO::print(AutoPreBlock, CurBlock);
@@ -60,9 +59,8 @@ void MyPlayer(Player *my)
 					CurBlock.rotation();
 					if (board.coll(CurBlock) == Board::COLL_NO)
 					{
-						PrePredic = Predict;
+						IO::print(Predict, IO::ERASE);
 						Predict = board.predictBlock(CurBlock);
-						IO::print(PrePredic, IO::ERASE);
 						IO::print(Predict, IO::PREDICT);
 
 						IO::print(RotPreBlock, CurBlock);
@@ -75,9 +73,8 @@ void MyPlayer(Player *my)
 				CurBlock.addMove(x, y);
 				if (board.coll(CurBlock) == Board::COLL_NO)
 				{
-					PrePredic = Predict;
+					IO::print(Predict, IO::ERASE);
 					Predict = board.predictBlock(CurBlock);
-					IO::print(PrePredic, IO::ERASE);
 					IO::print(Predict, IO::PREDICT);
 
 					IO::print(CtlPreBlock, CurBlock);
@@ -96,9 +93,9 @@ void MyPlayer(Player *my)
 	}
 }
 
-void OtherPlayer(Player *my)
+void OtherPlayer(Player *pMy)
 {
-	Board &MyBoard = my->board;
+	Board &MyBoard = pMy->board;
 
 	while (MyBoard.live)
 	{
