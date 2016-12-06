@@ -56,7 +56,6 @@ void MyPlayer(Player *my)
 					continue;
 				if (r == 1)
 				{
-					// 도형 회전 코드
 					Block RotPreBlock = CurBlock;
 					CurBlock.rotation();
 					if (board.coll(CurBlock) == Board::COLL_NO)
