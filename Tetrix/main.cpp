@@ -22,7 +22,7 @@ int main()
 	for (auto& th : threads) th.join();
 
 	Point pos(0, Board::HEIGHT + 2);
-	IO::print("게임이 종료되었습니다.\n", pos, Block::White);
+	IO::print("The game has ended.\n", pos, Block::White);
 
 	return 0;
 }
