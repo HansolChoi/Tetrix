@@ -35,8 +35,8 @@ void MyPlayer(Player *pMy)
 
 	while (board.live)
 	{
-		CurBlock = board.takeBlock();
-		info.renewBlock(&board.qBlock);
+		CurBlock = board.giveBlock();
+		info.infoBlock(&board.qBlock);
 		board.chkLive(CurBlock);
 		Block AutoPreBlock = CurBlock;
 		Block Predict = CurBlock;
@@ -73,7 +73,7 @@ void MyPlayer(Player *pMy)
 		CurBlock = AutoPreBlock;
 		board.insert(CurBlock);
 		board.lineClear(CurBlock);
-		info.renewScore(board.score);
+		info.infoScore(board.score);
 	}
 }
 

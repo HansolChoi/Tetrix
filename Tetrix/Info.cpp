@@ -14,10 +14,10 @@ Info::Info(Point Base, queue<Block> *qBlock)
 	EraseBlock.type = 0;
 	EraseBlock.color = Block::Black;
 
-	renewBlock(qBlock);
+	infoBlock(qBlock);
 }
 
-void Info::renewBlock(queue<Block> *qBlock)
+void Info::infoBlock(queue<Block> *qBlock)
 {
 	for (int i = 0; i < nBlockShow; ++i)
 	{
@@ -32,7 +32,7 @@ void Info::renewBlock(queue<Block> *qBlock)
 	}
 }
 
-void Info::renewScore(int score)
+void Info::infoScore(int score)
 {
 	string sscore = to_string(score);
 	IO::print(sscore, ScoreCoor, IO::White);

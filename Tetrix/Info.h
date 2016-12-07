@@ -16,6 +16,6 @@ public:
 	Point ScoreCoor;
 	Block EraseBlock;
 	Info(Point Base, queue<Block> *qBlock);
-	void renewBlock(queue<Block> *qBlock);
-	void renewScore(int score);
+	void infoBlock(queue<Block> *qBlock);
+	void infoScore(int score);
 };

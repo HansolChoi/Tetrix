@@ -22,7 +22,7 @@ public:
 
 	Board();
 	Block bkInit();
-	Block takeBlock();
+	Block giveBlock();
 	Block predictBlock(Block &CurBlock);
 	void chkLive(Block &block);
 	void insert(Block block);

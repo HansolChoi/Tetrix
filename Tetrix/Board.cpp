@@ -43,7 +43,7 @@ Block Board::bkInit()
 	return NewBlock;
 }
 
-Block Board::takeBlock()
+Block Board::giveBlock()
 {
 	qBlock.push(bkInit());
 	Block newBlock = qBlock.front();
