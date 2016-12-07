@@ -17,7 +17,6 @@ public:
 	int type, color;
 	Point pos;
 
-	bool rotation();
-	bool addMove(int addX, int addY);
+	bool addMove(int addX, int addY, int addR);
 	Block& operator=(const Block &ref);
 };

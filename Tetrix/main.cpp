@@ -53,24 +53,9 @@ void MyPlayer(Player *pMy)
 				int x = 0, y = 0, r = 0;
 				if (IO::key(x, y, r) == false)
 					continue;
-				if (r == 1)
-				{
-					Block RotPreBlock = CurBlock;
-					CurBlock.rotation();
-					if (board.coll(CurBlock) == Board::COLL_NO)
-					{
-						IO::print(Predict, IO::ERASE);
-						Predict = board.predictBlock(CurBlock);
-						IO::print(Predict, IO::PREDICT);
 
-						IO::print(RotPreBlock, CurBlock);
-					}
-					else
-						CurBlock = RotPreBlock;
-					continue;
-				}
 				Block CtlPreBlock = CurBlock;
-				CurBlock.addMove(x, y);
+				CurBlock.addMove(x, y, r);
 				if (board.coll(CurBlock) == Board::COLL_NO)
 				{
 					IO::print(Predict, IO::ERASE);
@@ -83,7 +68,7 @@ void MyPlayer(Player *pMy)
 					CurBlock = CtlPreBlock;
 			}
 			AutoPreBlock = CurBlock;
-			CurBlock.addMove(0, 1);
+			CurBlock.addMove(0, 1, 0);
 		}while (board.coll(CurBlock) == Board::COLL_NO);
 
 		CurBlock = AutoPreBlock;

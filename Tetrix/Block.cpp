@@ -1,16 +1,12 @@
 #include <mutex>
 #include "Block.h"
 
-bool Block::rotation()
-{
-	type = NextBlock[type];
-	return true;
-}
-
-bool Block::addMove(int addX, int addY)
+bool Block::addMove(int addX, int addY, int addR)
 {
 	pos.x += addX;
 	pos.y += addY;	
+	if(addR)
+		type = NextBlock[type];
 	return true;
 }
 
