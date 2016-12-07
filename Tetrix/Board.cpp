@@ -67,9 +67,9 @@ Block Board::predictBlock(Block &CurBlock)
 {
 	Block predict = CurBlock;
 	do {
-		predict.addMove(0, 1, 0);
+		predict.addMove(AddX::Zero(), AddY::Plus(), AddR::RoN());
 	} while (coll(predict) == COLL_NO);
-	predict.addMove(0, -1, 0);
+	predict.addMove(AddX::Zero(), AddY::Minus(), AddR::RoN());
 	return predict;
 }
 

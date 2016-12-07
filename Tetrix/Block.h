@@ -4,6 +4,41 @@
 
 using namespace std;
 
+class AddX
+{
+private:
+	int var;
+public:
+	explicit AddX(int x = 0) : var(x) {}
+	static AddX Zero() { return AddX(0); }
+	static AddX Plus() { return AddX(1); }
+	static AddX Minus() { return AddX(-1); }
+	int getAddX() { return var; }
+};
+
+class AddY
+{
+private:
+	int var;
+public:
+	explicit AddY(int y = 0) : var(y) {}
+	static AddY Zero() { return AddY(0); }
+	static AddY Plus() { return AddY(1); }
+	static AddY Minus() { return AddY(-1); }
+	int getAddY() { return var; }
+};
+
+class AddR
+{
+private:
+	bool var;
+public:
+	explicit AddR(bool r = false) : var(r) {}
+	static AddR RoY() { return AddR(true); }
+	static AddR RoN() { return AddR(false); }
+	bool getAddR() { return var; }
+};
+
 class Block
 {
 public:
@@ -17,6 +52,6 @@ public:
 	int type, color;
 	Point pos;
 
-	bool addMove(int addX, int addY, int addR);
+	bool addMove(AddX &x, AddY &y, AddR &r);
 	Block& operator=(const Block &ref);
 };

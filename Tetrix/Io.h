@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include "Block.h"
+#include "Point.h"
 using namespace std;
 
 class IO
@@ -16,7 +17,8 @@ public:
 	static const char expr[3][3];
 
 	static void init();
-	static void gotoXY(int x, int y);
+	static void setCursor(int x, int y);
+	static void getCursor(Point &pos);
 	static void setColor(int color);
 	static void clear();
 	static void print(Block &block, int cmd);
@@ -24,5 +26,5 @@ public:
 	static void print(Block &erase, Block &write);
 	static void print(const string &expr, Point &pos, int color);
 	static void print(const string &expr);
-	static bool key(int &x, int &y, int &r);
+	static bool key(AddX &x, AddY &y, AddR &r);
 };

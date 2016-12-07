@@ -12,10 +12,18 @@ void IO::init()
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 }
 
-void IO::gotoXY(int x, int y)
+void IO::setCursor(int x, int y)
 {
 	COORD pos = { (short)(2 * x), (short)y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+}
+
+void IO::getCursor(Point &pos)
+{
+	CONSOLE_SCREEN_BUFFER_INFO cs;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cs);
+	pos.x = (int)cs.dwCursorPosition.X;
+	pos.y = (int)cs.dwCursorPosition.Y;
 }
 
 void IO::setColor(int color)
@@ -79,7 +87,7 @@ void IO::print(const string &expr, Point &pos, int color)
 	mtx.lock();
 
 	setColor(color);
-	gotoXY(pos.x, pos.y);
+	setCursor(pos.x, pos.y);
 	printf("%s", expr.data());
 	mtx.unlock();
 }
@@ -89,7 +97,7 @@ void IO::print(const string &expr)
 	cout << expr;
 }
 
-bool IO::key(int &x, int &y, int &r)
+bool IO::key(AddX &x, AddY &y, AddR &r)
 {
 	unsigned char KeyNum;
 	static const char left = 75, right = 77, down = 80, up = 72;
@@ -101,13 +109,13 @@ bool IO::key(int &x, int &y, int &r)
 	{
 		KeyNum = _getch();
 		if (KeyNum == left)
-			--x;
+			x = AddX::Minus();
 		else if (KeyNum == right)
-			++x;
+			x = AddX::Plus();
 		else if (KeyNum == down)
-			++y;
+			y = AddY::Plus();
 		else if (KeyNum == up)
-			r = 1;
+			r = AddR::RoY();
 	}
 	return true;
 }

@@ -54,7 +54,7 @@ void MyPlayer(Player *pMy)
 			for (int TCount = 0; TCount < 10; ++TCount)
 			{
 				this_thread::sleep_for(10ms);
-				int x = 0, y = 0, r = 0;
+				AddX x; AddY y; AddR r;
 				if (IO::key(x, y, r) == false)
 					continue;
 
@@ -71,7 +71,7 @@ void MyPlayer(Player *pMy)
 				}
 			}
 			AutoPreBlock = CurBlock;
-			CurBlock.addMove(0, 1, 0);
+			CurBlock.addMove(AddX::Zero(), AddY::Plus(), AddR::RoN());
 		}while (board.coll(CurBlock) == Board::COLL_NO);
 
 		CurBlock = AutoPreBlock;

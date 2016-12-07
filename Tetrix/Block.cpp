@@ -1,11 +1,11 @@
 #include <mutex>
 #include "Block.h"
 
-bool Block::addMove(int addX, int addY, int addR)
+bool Block::addMove(AddX &x, AddY &y, AddR &r)
 {
-	pos.x += addX;
-	pos.y += addY;	
-	if(addR)
+	pos.x += x.getAddX();
+	pos.y += y.getAddY();
+	if(r.getAddR())
 		type = NextBlock[type];
 	return true;
 }
