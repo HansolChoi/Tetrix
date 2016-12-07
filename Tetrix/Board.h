@@ -21,6 +21,7 @@ public:
 	queue<Block> qBlock;
 
 	Board();
+	void printBoard();
 	Block bkInit();
 	Block giveBlock();
 	Block predictBlock(Block &CurBlock);

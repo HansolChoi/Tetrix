@@ -23,6 +23,11 @@ void IO::setColor(int color)
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
+void IO::clear()
+{
+	system("cls");
+}
+
 void IO::print(Block &block, int cmd)
 {
 	for (int i = 0; i < Block::Size; ++i)
@@ -77,6 +82,11 @@ void IO::print(const string &expr, Point &pos, int color)
 	gotoXY(pos.x, pos.y);
 	printf("%s", expr.data());
 	mtx.unlock();
+}
+
+void IO::print(const string &expr)
+{
+	cout << expr;
 }
 
 bool IO::key(int &x, int &y, int &r)

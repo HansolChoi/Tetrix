@@ -9,16 +9,12 @@ Board::Board() : ClearBonus(WIDTH * 5)
 	{
 		lineCount[i] = 0;
 		data[i][0] = data[i][WIDTH + 1] = GUARD;
-		IO::print("бс", Point(0, i), Block::White);
-		IO::print("бс", Point(WIDTH + 1, i), Block::White);
 	}
 
 	for (int i = 1; i <= WIDTH; ++i)
 	{
 		data[0][i] = TOP;
 		data[HEIGHT + 1][i] = BOTTOM;
-		IO::print("бс", Point(i, 0), Block::White);
-		IO::print("бс", Point(i, HEIGHT + 1), Block::White);
 	}
 
 	for (int row = 1; row <= HEIGHT; ++row)
@@ -30,6 +26,21 @@ Board::Board() : ClearBonus(WIDTH * 5)
 	score = nTotalBlock = 0;
 	for (int i = 0; i < Info::nBlockShow; ++i)
 		qBlock.push(bkInit());
+}
+
+void Board::printBoard()
+{
+	for (int i = 0; i <= HEIGHT + 1; ++i)
+	{
+		IO::print("бс", Point(0, i), Block::White);
+		IO::print("бс", Point(WIDTH + 1, i), Block::White);
+	}
+
+	for (int i = 1; i <= WIDTH; ++i)
+	{
+		IO::print("бс", Point(i, 0), Block::White);
+		IO::print("бс", Point(i, HEIGHT + 1), Block::White);
+	}
 }
 
 Block Board::bkInit()

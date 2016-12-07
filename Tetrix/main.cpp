@@ -14,6 +14,10 @@ int main()
 {
 	thread threads[2];
 	Player my;
+
+	my.Register();
+	my.board.printBoard();
+	my.info.printInfo(&my.board.qBlock);
 	IO::init();
 
 	threads[0] = thread(MyPlayer, &my);

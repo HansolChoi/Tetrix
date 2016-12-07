@@ -1,18 +1,22 @@
 #include <string>
 #include "Info.h"
 
-Info::Info(Point Base, queue<Block> *qBlock)
+Info::Info(Point Base)
 {
 	BaseCoor = Base;
 	ScoreCoor = Base + Point(1, 1);
 	BlockCoor = Base + Point(1, 3);
 
+	EraseBlock.type = 0;
+	EraseBlock.color = Block::Black;
+}
+
+void Info::printInfo(queue<Block> *qBlock)
+{
 	IO::print("[ Score ]", BaseCoor, IO::White);
 	IO::print("0", ScoreCoor, IO::White);
 
 	IO::print("[ Next Block ]", BaseCoor + Point(0, 2), IO::White);
-	EraseBlock.type = 0;
-	EraseBlock.color = Block::Black;
 
 	infoBlock(qBlock);
 }

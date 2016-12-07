@@ -18,9 +18,11 @@ public:
 	static void init();
 	static void gotoXY(int x, int y);
 	static void setColor(int color);
+	static void clear();
 	static void print(Block &block, int cmd);
 	static void print(Block &block, Point &pos, int cmd);
-	static void print(const string &expr, Point &pos, int color);
 	static void print(Block &erase, Block &write);
+	static void print(const string &expr, Point &pos, int color);
+	static void print(const string &expr);
 	static bool key(int &x, int &y, int &r);
 };
