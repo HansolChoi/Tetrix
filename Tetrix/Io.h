@@ -17,7 +17,7 @@ public:
 	static const char expr[3][3];
 
 	static void init();
-	static void setCursor(int x, int y);
+	static void setCursor(Point &pos);
 	static void getCursor(Point &pos);
 	static void setColor(int color);
 	static void clear();

@@ -12,10 +12,10 @@ void IO::init()
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 }
 
-void IO::setCursor(int x, int y)
+void IO::setCursor(Point &pos)
 {
-	COORD pos = { (short)(2 * x), (short)y };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	COORD _pos = { (short)(2 * pos.x), (short)pos.y };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), _pos);
 }
 
 void IO::getCursor(Point &pos)
@@ -87,7 +87,7 @@ void IO::print(const string &expr, Point &pos, int color)
 	mtx.lock();
 
 	setColor(color);
-	setCursor(pos.x, pos.y);
+	setCursor(pos);
 	printf("%s", expr.data());
 	mtx.unlock();
 }
