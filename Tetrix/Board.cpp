@@ -1,4 +1,3 @@
-#include <mutex>
 #include <random>
 #include <chrono>
 #include "Board.h"
@@ -111,8 +110,6 @@ void Board::insert(const Block &block)
 
 int Board::coll(const Block &block)
 {
-	static mutex mtx;
-	mtx.lock();
 	for (int i = 0; i < Block::Size; ++i)
 	{
 		for (int j = 0; j < Block::Size; ++j)
@@ -121,13 +118,9 @@ int Board::coll(const Block &block)
 			int y = block.pos.y + i;
 
 			if (Block::BlockType[block.type][i][j] && data[y][x])
-			{
-				mtx.unlock();
 				return COLL_OBJ;
-			}
 		}
 	}
-	mtx.unlock();
 	return COLL_NO;
 }
 

@@ -1,4 +1,3 @@
-#include <mutex>
 #include "Block.h"
 
 bool Block::addMove(const AddX &x, const AddY &y, const AddR &r)
@@ -12,16 +11,13 @@ bool Block::addMove(const AddX &x, const AddY &y, const AddR &r)
 
 Block& Block::operator=(const Block &ref)
 {	
-	static mutex mtx;
-	mtx.lock();
 	type = ref.type;
 	color = ref.color;
 	pos = ref.pos;
-	mtx.unlock();
 	return *this;
 }
 
-// 0번 Block은 Block제거 기능을 갖고 있음. 순서변경 금지.
+// Block # 0 has block removal function. Do not change order.
 const int Block::BlockType[Block::nType][Block::Size][Block::Size] = {
 	{ { 1, 1, 1 },{ 1, 1, 1 },{ 1, 1, 1 } }, // 0
 	{ { 1, 1, 1 },{ 0, 0, 1 },{ 0, 0, 1 } }, // 1
