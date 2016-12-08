@@ -18,7 +18,7 @@ int main()
 
 	my.Register();
 	my.board.printBoard();
-	my.info.printInfo(&my.board.qBlock);
+	my.info.printInfo(my.board.getQueueBlock());
 	IO::init();
 
 	threads[0] = thread(MyPlayer, &my);
@@ -38,10 +38,10 @@ void MyPlayer(Player *pMy)
 	Block &CurBlock = pMy->block;
 	Info &info = pMy->info;
 
-	while (board.live)
+	while (board.getLive())
 	{
 		CurBlock = board.giveBlock();
-		info.infoBlock(&board.qBlock);
+		info.infoBlock(board.getQueueBlock());
 		board.chkLive(CurBlock);
 		Block AutoPreBlock = CurBlock;
 		Block Predict = CurBlock;
@@ -78,7 +78,7 @@ void MyPlayer(Player *pMy)
 		CurBlock = AutoPreBlock;
 		board.insert(CurBlock);
 		board.lineClear(CurBlock);
-		info.infoScore(board.score);
+		info.infoScore(board.getScore());
 	}
 }
 
@@ -86,7 +86,7 @@ void OtherPlayer(Player *pMy)
 {
 	Board &MyBoard = pMy->board;
 
-	while (MyBoard.live)
+	while (MyBoard.getLive())
 	{
 
 	}

@@ -2,8 +2,9 @@
 
 bool Block::addMove(const AddX &x, const AddY &y, const AddR &r)
 {
-	pos.x += x.getAddX();
-	pos.y += y.getAddY();
+	pos.setX(pos.getX() + x.getAddX());
+	pos.setY(pos.getY() + y.getAddY());
+
 	if(r.getAddR())
 		type = NextBlock[type];
 	return true;

@@ -20,10 +20,9 @@ public:
 
 class IO
 {
-public:
-	Color color;
+private:
 	static const char expr[3][3];
-
+public:
 	static void init();
 	static void setCursor(const Point &pos);
 	static void getCursor(Point &pos);

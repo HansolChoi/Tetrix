@@ -14,7 +14,7 @@ void IO::init()
 
 void IO::setCursor(const Point &pos)
 {
-	COORD _pos = { (short)(2 * pos.x), (short)pos.y };
+	COORD _pos = { (short)(2 * pos.getX()), (short)pos.getY() };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), _pos);
 }
 
@@ -22,13 +22,13 @@ void IO::getCursor(Point &pos)
 {
 	CONSOLE_SCREEN_BUFFER_INFO cs;
 	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cs);
-	pos.x = (int)cs.dwCursorPosition.X;
-	pos.y = (int)cs.dwCursorPosition.Y;
+	pos.setX((int)cs.dwCursorPosition.X);
+	pos.setY((int)cs.dwCursorPosition.Y);
 }
 
 void IO::setColor(const Color &color)
 {
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.getColor());
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.getColorNum());
 }
 
 void IO::clear()
@@ -42,12 +42,12 @@ void IO::print(const Block &block, const CMD &cmd)
 	{
 		for (int j = 0; j < Block::Size; ++j)
 		{
-			if (Block::BlockType[block.type][i][j])
+			if (Block::BlockType[block.getType()][i][j])
 			{
-				int x = block.pos.x + j;
-				int y = block.pos.y + i;
+				int x = block.getPos().getX() + j;
+				int y = block.getPos().getY() + i;
 
-				IO::print(expr[cmd.getCmd()], Point(x, y), block.color);
+				IO::print(expr[cmd.getCmd()], Point(x, y), block.getColor());
 			}
 		}
 	}
@@ -55,17 +55,17 @@ void IO::print(const Block &block, const CMD &cmd)
 
 void IO::print(const Block &block, const Point &pos, const CMD &cmd)
 {
-	setColor(block.color);
+	setColor(block.getColor());
 	for (int i = 0; i < Block::Size; ++i)
 	{
 		for (int j = 0; j < Block::Size; ++j)
 		{
-			if (Block::BlockType[block.type][i][j])
+			if (Block::BlockType[block.getType()][i][j])
 			{
-				int x = pos.x + j;
-				int y = pos.y + i;
+				int x = pos.getX() + j;
+				int y = pos.getY() + i;
 
-				IO::print(expr[cmd.getCmd()], Point(x, y), block.color);
+				IO::print(expr[cmd.getCmd()], Point(x, y), block.getColor());
 			}
 		}
 	}

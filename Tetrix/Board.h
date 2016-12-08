@@ -14,6 +14,7 @@ public:
 	enum { BOTTOM = -3, TOP = -2, GUARD = -1, EMPTY = 0 };
 	enum { COLL_NO, COLL_OBJ};
 
+private:
 	int data[HEIGHT + 2][WIDTH + 2];
 	int lineCount[HEIGHT + 2];
 	bool live;
@@ -21,6 +22,7 @@ public:
 	int score, nTotalBlock;
 	queue<Block> qBlock;
 
+public:
 	Board();
 	void printBoard();
 	Block bkInit();
@@ -33,4 +35,7 @@ public:
 	void DownLine(int y);
 
 	const int getRandom(const int min, const int max) const;
+	const int getLive() const { return live; }
+	const int getScore() const { return score; }
+	queue<Block>* getQueueBlock() { return &qBlock; }
 };

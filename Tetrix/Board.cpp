@@ -23,7 +23,7 @@ Board::Board() : ClearBonus(WIDTH * 5)
 	}
 	live = true;
 	score = nTotalBlock = 0;
-	for (int i = 0; i < Info::nBlockShow; ++i)
+	for (int i = 0; i < Info::getNblock(); ++i)
 		qBlock.push(bkInit());
 }
 
@@ -46,9 +46,9 @@ Block Board::bkInit()
 {
 	Block NewBlock;
 
-	NewBlock.pos = Point(WIDTH / 2, 1);
-	NewBlock.type = getRandom(0, Block::nBaseType - 1);
-	NewBlock.color.setColor(getRandom(1, Block::nColor));
+	NewBlock.setPos(Point(WIDTH / 2, 1));
+	NewBlock.setType(getRandom(0, Block::nBaseType - 1));
+	NewBlock.setColor(Color(getRandom(1, Block::nColor)));
 
 	return NewBlock;
 }
@@ -78,8 +78,8 @@ void Board::chkLive(const Block &block)
 	{
 		for (int j = 0; j < Block::Size; ++j)
 		{
-			int x = block.pos.x + j;
-			int y = block.pos.y + i;
+			int x = block.getPos().getX() + j;
+			int y = block.getPos().getY() + i;
 			if (Block::BlockType[i][j] && data[y][x])
 			{
 				live = false;
@@ -95,12 +95,12 @@ void Board::insert(const Block &block)
 	{
 		for (int w = 0; w < Block::Size; ++w)
 		{
-			if (Block::BlockType[block.type][h][w])
+			if (Block::BlockType[block.getType()][h][w])
 			{
-				int x = block.pos.x + w;
-				int y = block.pos.y + h;
+				int x = block.getPos().getX() + w;
+				int y = block.getPos().getY() + h;
 
-				data[y][x] = block.color.getColor();
+				data[y][x] = block.getColor().getColorNum();
 				++lineCount[y];
 				++nTotalBlock;
 			}
@@ -114,10 +114,10 @@ int Board::coll(const Block &block)
 	{
 		for (int j = 0; j < Block::Size; ++j)
 		{
-			int x = block.pos.x + j;
-			int y = block.pos.y + i;
+			int x = block.getPos().getX() + j;
+			int y = block.getPos().getY() + i;
 
-			if (Block::BlockType[block.type][i][j] && data[y][x])
+			if (Block::BlockType[block.getType()][i][j] && data[y][x])
 				return COLL_OBJ;
 		}
 	}
@@ -130,7 +130,7 @@ bool Board::lineClear(const Block &block)
 	bool IsClear = false;
 	for (int BlockOffset = 1; BlockOffset <= Block::Size; ++BlockOffset)
 	{
-		int y = block.pos.y + Block::Size - BlockOffset;
+		int y = block.getPos().getY() + Block::Size - BlockOffset;
 		if (y > HEIGHT) continue;
 
 		if (lineCount[y] == WIDTH)
@@ -155,7 +155,7 @@ bool Board::lineClear(const Block &block)
 	// 지워진 줄, 아래로 내리기
 	for (int BlockOffset = 1; BlockOffset <= Block::Size; ++BlockOffset)
 	{
-		int y = block.pos.y + Block::Size - BlockOffset;
+		int y = block.getPos().getY() + Block::Size - BlockOffset;
 		if (y > HEIGHT) continue;
 
 		for (int i = 0; i < Block::Size; ++i)

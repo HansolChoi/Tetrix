@@ -5,8 +5,7 @@ private:
 	int var;
 public:
 	explicit Color(int c = 0) : var(c) {}
-	inline const int getColor() const { return var; }
-	inline void setColor(int color) { var = color; }
+	inline const int getColorNum() const { return var; }
 	
 	static Color Black() { return Color(0); }
 	static Color Blue() { return Color(1); }

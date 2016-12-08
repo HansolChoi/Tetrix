@@ -7,8 +7,8 @@ Info::Info(Point Base)
 	ScoreCoor = Base + Point(1, 1);
 	BlockCoor = Base + Point(1, 3);
 
-	EraseBlock.type = 0;
-	EraseBlock.color = Color::Black();
+	EraseBlock.setType(0);
+	EraseBlock.setColor(Color::Black());
 }
 
 void Info::printInfo(queue<Block> *qBlock)
