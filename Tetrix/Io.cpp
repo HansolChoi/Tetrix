@@ -12,7 +12,7 @@ void IO::init()
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 }
 
-void IO::setCursor(Point &pos)
+void IO::setCursor(const Point &pos)
 {
 	COORD _pos = { (short)(2 * pos.x), (short)pos.y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), _pos);
@@ -26,7 +26,7 @@ void IO::getCursor(Point &pos)
 	pos.y = (int)cs.dwCursorPosition.Y;
 }
 
-void IO::setColor(int color)
+void IO::setColor(const int color)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
@@ -36,7 +36,7 @@ void IO::clear()
 	system("cls");
 }
 
-void IO::print(Block &block, int cmd)
+void IO::print(const Block &block, const int cmd)
 {
 	for (int i = 0; i < Block::Size; ++i)
 	{
@@ -53,7 +53,7 @@ void IO::print(Block &block, int cmd)
 	}
 }
 
-void IO::print(Block &block, Point &pos, int cmd)
+void IO::print(const Block &block, const Point &pos, const int cmd)
 {
 	setColor(block.color);
 	for (int i = 0; i < Block::Size; ++i)
@@ -71,7 +71,7 @@ void IO::print(Block &block, Point &pos, int cmd)
 	}
 }
 
-void IO::print(Block &erase, Block &write)
+void IO::print(const Block &erase, const Block &write)
 {
 	static mutex mtx;
 	mtx.lock();
@@ -81,7 +81,7 @@ void IO::print(Block &erase, Block &write)
 	mtx.unlock();
 }
 
-void IO::print(const string &expr, Point &pos, int color)
+void IO::print(const string &expr, const Point &pos, const int color)
 {
 	static mutex mtx;
 	mtx.lock();

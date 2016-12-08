@@ -1,7 +1,7 @@
 #include <mutex>
 #include "Block.h"
 
-bool Block::addMove(AddX &x, AddY &y, AddR &r)
+bool Block::addMove(const AddX &x, const AddY &y, const AddR &r)
 {
 	pos.x += x.getAddX();
 	pos.y += y.getAddY();

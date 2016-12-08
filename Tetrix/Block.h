@@ -13,7 +13,7 @@ public:
 	static AddX Zero() { return AddX(0); }
 	static AddX Plus() { return AddX(1); }
 	static AddX Minus() { return AddX(-1); }
-	int getAddX() { return var; }
+	int getAddX() const { return var; }
 };
 
 class AddY
@@ -25,7 +25,7 @@ public:
 	static AddY Zero() { return AddY(0); }
 	static AddY Plus() { return AddY(1); }
 	static AddY Minus() { return AddY(-1); }
-	int getAddY() { return var; }
+	int getAddY() const { return var; }
 };
 
 class AddR
@@ -36,7 +36,7 @@ public:
 	explicit AddR(bool r = false) : var(r) {}
 	static AddR RoY() { return AddR(true); }
 	static AddR RoN() { return AddR(false); }
-	bool getAddR() { return var; }
+	bool getAddR() const { return var; }
 };
 
 class Block
@@ -52,6 +52,6 @@ public:
 	int type, color;
 	Point pos;
 
-	bool addMove(AddX &x, AddY &y, AddR &r);
+	bool addMove(const AddX &x, const AddY &y, const AddR &r);
 	Block& operator=(const Block &ref);
 };

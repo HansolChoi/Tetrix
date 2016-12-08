@@ -63,7 +63,7 @@ Block Board::giveBlock()
 	return newBlock;
 }
 
-Block Board::predictBlock(Block &CurBlock)
+Block Board::predictBlock(const Block &CurBlock)
 {
 	Block predict = CurBlock;
 	do {
@@ -73,7 +73,7 @@ Block Board::predictBlock(Block &CurBlock)
 	return predict;
 }
 
-void Board::chkLive(Block &block)
+void Board::chkLive(const Block &block) 
 {
 	for (int i = 0; i < Block::Size; ++i)
 	{
@@ -90,7 +90,7 @@ void Board::chkLive(Block &block)
 	}
 }
 
-void Board::insert(Block block)
+void Board::insert(const Block &block)
 {
 	for (int h = 0; h < Block::Size; ++h)
 	{
@@ -109,7 +109,7 @@ void Board::insert(Block block)
 	}
 }
 
-int Board::coll(Block &block)
+int Board::coll(const Block &block)
 {
 	static mutex mtx;
 	mtx.lock();
@@ -131,7 +131,7 @@ int Board::coll(Block &block)
 	return COLL_NO;
 }
 
-bool Board::lineClear(Block &block)
+bool Board::lineClear(const Block &block)
 {
 	// ²ËÂù ÁÙ »èÁ¦
 	bool IsClear = false;

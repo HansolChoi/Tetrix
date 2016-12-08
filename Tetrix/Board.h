@@ -24,11 +24,11 @@ public:
 	void printBoard();
 	Block bkInit();
 	Block giveBlock();
-	Block predictBlock(Block &CurBlock);
-	void chkLive(Block &block);
-	void insert(Block block);
-	int coll(Block &block);
-	bool lineClear(Block &block);
+	Block predictBlock(const Block &CurBlock);
+	void chkLive(const Block &block);
+	void insert(const Block &block);
+	int coll(const Block &block);
+	bool lineClear(const Block &block);
 	void DownLine(int y);
 
 	const int getRandom(const int min, const int max) const;
