@@ -4,6 +4,7 @@
 #include "Block.h"
 #include "Io.h"
 #include "Info.h"
+#include "Color.h"
 using namespace std;
 
 class Board

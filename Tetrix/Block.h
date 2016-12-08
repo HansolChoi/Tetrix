@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Point.h"
+#include "Color.h"
 
 using namespace std;
 
@@ -46,12 +47,10 @@ public:
 	static const int Size = 3, nType = nBaseType + nChangeType, nColor = 15;
 	static const int BlockType[nType][Size][Size];
 	static const int NextBlock[nType];
-	enum{Black, Blue, Green, Jade, Red, ReddishPurple, Yellow, 
-		White, Gray, SoftBlue, SoftGreen, SoftJade, SoftRed, 
-		SoftReddishPurple, SoftYellow, DeepWhite};
-	int type, color;
+	
+	int type;
 	Point pos;
-
+	Color color;
 	bool addMove(const AddX &x, const AddY &y, const AddR &r);
 	Block& operator=(const Block &ref);
 };

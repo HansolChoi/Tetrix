@@ -26,9 +26,9 @@ void IO::getCursor(Point &pos)
 	pos.y = (int)cs.dwCursorPosition.Y;
 }
 
-void IO::setColor(const int color)
+void IO::setColor(const Color &color)
 {
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color.getColor());
 }
 
 void IO::clear()
@@ -36,7 +36,7 @@ void IO::clear()
 	system("cls");
 }
 
-void IO::print(const Block &block, const int cmd)
+void IO::print(const Block &block, const CMD &cmd)
 {
 	for (int i = 0; i < Block::Size; ++i)
 	{
@@ -47,13 +47,13 @@ void IO::print(const Block &block, const int cmd)
 				int x = block.pos.x + j;
 				int y = block.pos.y + i;
 
-				IO::print(expr[cmd], Point(x, y), block.color);
+				IO::print(expr[cmd.getCmd()], Point(x, y), block.color);
 			}
 		}
 	}
 }
 
-void IO::print(const Block &block, const Point &pos, const int cmd)
+void IO::print(const Block &block, const Point &pos, const CMD &cmd)
 {
 	setColor(block.color);
 	for (int i = 0; i < Block::Size; ++i)
@@ -65,7 +65,7 @@ void IO::print(const Block &block, const Point &pos, const int cmd)
 				int x = pos.x + j;
 				int y = pos.y + i;
 
-				IO::print(expr[cmd], Point(x, y), block.color);
+				IO::print(expr[cmd.getCmd()], Point(x, y), block.color);
 			}
 		}
 	}
@@ -76,12 +76,12 @@ void IO::print(const Block &erase, const Block &write)
 	static mutex mtx;
 	mtx.lock();
 
-	print(erase, IO::ERASE);
-	print(write, IO::WRITE);
+	print(erase, CMD::Erase());
+	print(write, CMD::Write());
 	mtx.unlock();
 }
 
-void IO::print(const string &expr, const Point &pos, const int color)
+void IO::print(const string &expr, const Point &pos, const Color &color)
 {
 	static mutex mtx;
 	mtx.lock();

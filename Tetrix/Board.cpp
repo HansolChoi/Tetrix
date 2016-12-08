@@ -31,14 +31,14 @@ void Board::printBoard()
 {
 	for (int i = 0; i <= HEIGHT + 1; ++i)
 	{
-		IO::print("бс", Point(0, i), Block::White);
-		IO::print("бс", Point(WIDTH + 1, i), Block::White);
+		IO::print("бс", Point(0, i), Color::White());
+		IO::print("бс", Point(WIDTH + 1, i), Color::White());
 	}
 
 	for (int i = 1; i <= WIDTH; ++i)
 	{
-		IO::print("бс", Point(i, 0), Block::White);
-		IO::print("бс", Point(i, HEIGHT + 1), Block::White);
+		IO::print("бс", Point(i, 0), Color::White());
+		IO::print("бс", Point(i, HEIGHT + 1), Color::White());
 	}
 }
 
@@ -48,7 +48,7 @@ Block Board::bkInit()
 
 	NewBlock.pos = Point(WIDTH / 2, 1);
 	NewBlock.type = getRandom(0, Block::nBaseType - 1);
-	NewBlock.color = getRandom(1, Block::nColor);
+	NewBlock.color.setColor(getRandom(1, Block::nColor));
 
 	return NewBlock;
 }
@@ -100,7 +100,7 @@ void Board::insert(const Block &block)
 				int x = block.pos.x + w;
 				int y = block.pos.y + h;
 
-				data[y][x] = block.color;
+				data[y][x] = block.color.getColor();
 				++lineCount[y];
 				++nTotalBlock;
 			}
@@ -147,7 +147,7 @@ bool Board::lineClear(const Block &block)
 			for (int x = 1; x <= WIDTH; ++x)
 			{
 				data[y][x] = EMPTY;
-				IO::print("  ", Point(x, y), Block::Black);
+				IO::print("  ", Point(x, y), Color::Black());
 			}
 		}
 	}
@@ -178,9 +178,9 @@ void Board::DownLine(int y)
 			data[h][w] = data[h - 1][w];
 			data[h - 1][w] = EMPTY;
 			if (data[h][w])
-				IO::print("бс", Point(w, h), data[h][w]);
+				IO::print("бс", Point(w, h), Color(data[h][w]));
 			else
-				IO::print("  ", Point(w, h), data[h][w]);
+				IO::print("  ", Point(w, h), Color(data[h][w]));
 		}
 	}
 }

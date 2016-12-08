@@ -4,6 +4,7 @@
 #include "Board.h"
 #include "Block.h"
 #include "Io.h"
+#include "Color.h"
 
 using namespace std;
 
@@ -26,7 +27,7 @@ int main()
 	for (auto& th : threads) th.join();
 
 	Point pos(0, Board::HEIGHT + 2);
-	IO::print("The game has ended.\n", pos, Block::White);
+	IO::print("The game has ended.\n", pos, Color::White());
 
 	return 0;
 }
@@ -46,9 +47,9 @@ void MyPlayer(Player *pMy)
 		Block Predict = CurBlock;
 
 		do {
-			IO::print(Predict, IO::ERASE);
+			IO::print(Predict, CMD::Erase());
 			Predict = board.predictBlock(CurBlock);
-			IO::print(Predict, IO::PREDICT);
+			IO::print(Predict, CMD::Predict());
 
 			IO::print(AutoPreBlock, CurBlock);
 			for (int TCount = 0; TCount < 10; ++TCount)
@@ -62,9 +63,9 @@ void MyPlayer(Player *pMy)
 				CtlBlock.addMove(x, y, r);
 				if (board.coll(CtlBlock) == Board::COLL_NO)
 				{
-					IO::print(Predict, IO::ERASE);
+					IO::print(Predict, CMD::Erase());
 					Predict = board.predictBlock(CtlBlock);
-					IO::print(Predict, IO::PREDICT);
+					IO::print(Predict, CMD::Predict());
 
 					IO::print(CurBlock, CtlBlock);
 					CurBlock = CtlBlock;

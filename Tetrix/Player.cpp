@@ -2,7 +2,7 @@
 
 void Player::logo() const
 {
-	IO::setColor(IO::White);
+	IO::setColor(Color::White());
 	IO::print("          ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á\n");
 	IO::print("          ¡á                                                                                                                ¡á\n");
 	IO::print("          ¡á                                                                                                                ¡á\n");
