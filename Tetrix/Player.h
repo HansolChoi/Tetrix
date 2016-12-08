@@ -10,13 +10,18 @@ using namespace std;
 
 class Player
 {
-public:
+private:
 	string name;
 	int GameType;
 	Board board;
 	Block block;
 	Info  info;
+public:
 	Player() :info(Point(Board::WIDTH + 3, 0)){}
 	void logo() const;
 	void Register();
+
+	Board& getBoard() { return board; }
+	Block& getBlock() { return block; }
+	Info&  getInfo() { return info; }
 };

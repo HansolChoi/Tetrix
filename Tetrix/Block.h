@@ -60,8 +60,8 @@ public:
 
 	inline const int getType() const { return type; }
 	inline void setType(const int _type) { type = _type; }
-	inline const Point getPos() const { return pos; }
+	inline const Point& getPos() const { return pos; }
 	inline void setPos(const Point &_pos) { pos = _pos; }
-	inline const Color getColor() const { return color; }
+	inline const Color& getColor() const { return color; }
 	inline void setColor(const Color & _color) { color = _color; }
 };

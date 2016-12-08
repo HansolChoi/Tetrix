@@ -17,8 +17,8 @@ int main()
 	Player my;
 
 	my.Register();
-	my.board.printBoard();
-	my.info.printInfo(my.board.getQueueBlock());
+	my.getBoard().printBoard();
+	my.getInfo().printInfo(my.getBoard().getQueueBlock());
 	IO::init();
 
 	threads[0] = thread(MyPlayer, &my);
@@ -34,9 +34,9 @@ int main()
 
 void MyPlayer(Player *pMy)
 {
-	Board &board = pMy->board;
-	Block &CurBlock = pMy->block;
-	Info &info = pMy->info;
+	Board &board = pMy->getBoard();
+	Block &CurBlock = pMy->getBlock();
+	Info &info = pMy->getInfo();
 
 	while (board.getLive())
 	{
@@ -84,7 +84,7 @@ void MyPlayer(Player *pMy)
 
 void OtherPlayer(Player *pMy)
 {
-	Board &MyBoard = pMy->board;
+	Board &MyBoard = pMy->getBoard();
 
 	while (MyBoard.getLive())
 	{
